@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;minimum-scale=1.0">
+<title>My First Grid</title>
+ 
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/ui-lightness/jquery-ui-1.9.1.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/ui.jqgrid.css" />
+ <style>
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 75%;
+}
+</style>
+<script src="../../js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="../../js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script src="../../js/jquery.jqGrid.min.js" type="text/javascript"></script>
+ 
+ <script type="text/javascript">
+var mydata = [
+
+    { EID: "8", EmployeeName: "Name 1", EmployeeIndex: "10.00", EmployedDate: "2010-05-24", CurrentlyEmployed: true, SiteID: "a" },
+    { EID: "67", EmployeeName: "Name 2", EmployeeIndex: "20.00", EmployedDate: "2010-05-25", CurrentlyEmployed: false, SiteID: "b" },
+    { EID: "34", EmployeeName: "Name 3", EmployeeIndex: "30.00", EmployedDate: "2007-09-01", CurrentlyEmployed: true, SiteID: "c" },
+    { EID: "14", EmployeeName: "Name 4", EmployeeIndex: "10.00", EmployedDate: "2007-10-04", CurrentlyEmployed: false, SiteID: "d" },
+    { EID: "52", EmployeeName: "Name 5", EmployeeIndex: "20.00", EmployedDate: "2007-10-05", CurrentlyEmployed: true, SiteID: "e" },
+    { EID: "6", EmployeeName: "Name 6", EmployeeIndex: "30.00", EmployedDate: "2007-09-06", CurrentlyEmployed: false, SiteID: "f" },
+    { EID: "2", EmployeeName: "Name 7", EmployeeIndex: "10.00", EmployedDate: "2007-10-04", CurrentlyEmployed: true, SiteID: "g" }
+
+    ];
+
+$(function() {
+     var grid = jQuery("#myGrid");
+     grid.jqGrid({
+         data: mydata,
+         datatype: "local",
+         autowidth:true,
+         shrinktofit:true,
+         hidegrid: false,//hides the arrow button at the top right corner for collapsing the jqGrid
+         rowNum: 10,
+         rowList: [10, 20, 30],
+         viewrecords: true,
+         caption: "Employees",
+         pager: "#pager",
+         colNames: ['EID', 'Name', 'Index', 'Employed Date', 'Employed', 'Url'],
+         colModel: [
+             { name: 'EID', index: 'EID', width: 100, align: "center", sorttype: 'int' },
+             { name: 'EmployeeName', index: 'EmployeeName', width: 100, align: "left" },
+             { name: 'EmployeeIndex', index: 'EmployeeIndex', width: 100, align: "center" },
+             { name: 'EmployedDate', index: 'EmployedDate', width: 120, align: "right", formatter: 'date', formatoptions: { newformat: 'm-d-Y' }, datefmt: 'm-d-Y' },
+             { name: 'CurrentlyEmployed', index: 'CurrentlyEmployed', width: 100, align: "center", formatter: 'checkbox' },
+             { name: 'SiteID', index: 'SiteID', width: 100, formatter: linkFormatter, sortable: false }
+                   ]
+     });
+});
+
+function linkFormatter(cellValue, options, rowdata, action) {
+    return "<a href='http://praneethmoka.wordpress.com?rid=" + options.rowId + "' target='_blank'>Click here</a>";
+}
+       
+       
+</script>
+</head>
+<body>
+<table id="myGrid"><tr><td/></tr></table> 
+<div id="pager"></div>
+hi this is sample nativa android app to test phone gap's abaility to convert web page to native
+mobile app
+</body>
+</html>

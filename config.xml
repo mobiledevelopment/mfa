@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"
+id="com.example.myfirstapp" version="1.0.0">
+<name>My First App</name> <description>My First Tryst with Phone Gap</description>
+<author href="http://www.yahoo.com" email="mobdev2012@yahoo.com"> Mobile Dev 2012
+</author>
+<icon src="res/drawable-ldpi/ic_launcher.png" height="114" width="114" />
+<icon src="res/drawable-mdpi/ic_launcher.png" height="72" width="72" /> <icon src="res/drawable-mdpi/ic_launcher.png" height="57" width="57" /> <icon src="res/drawable-hdpi/ic_launcher.png" height="48" width="48" /> <icon src="res/drawable-hdpi/ic_launcher.png" height="36" width="36" />
+</widget>
