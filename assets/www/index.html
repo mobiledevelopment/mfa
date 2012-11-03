@@ -20,15 +20,14 @@ html, body {
  
  <script type="text/javascript">
 var mydata = [
-
-    { EID: "8", EmployeeName: "Name 1", EmployeeIndex: "10.00", EmployedDate: "2010-05-24", CurrentlyEmployed: true, SiteID: "a" },
-    { EID: "67", EmployeeName: "Name 2", EmployeeIndex: "20.00", EmployedDate: "2010-05-25", CurrentlyEmployed: false, SiteID: "b" },
-    { EID: "34", EmployeeName: "Name 3", EmployeeIndex: "30.00", EmployedDate: "2007-09-01", CurrentlyEmployed: true, SiteID: "c" },
-    { EID: "14", EmployeeName: "Name 4", EmployeeIndex: "10.00", EmployedDate: "2007-10-04", CurrentlyEmployed: false, SiteID: "d" },
-    { EID: "52", EmployeeName: "Name 5", EmployeeIndex: "20.00", EmployedDate: "2007-10-05", CurrentlyEmployed: true, SiteID: "e" },
-    { EID: "6", EmployeeName: "Name 6", EmployeeIndex: "30.00", EmployedDate: "2007-09-06", CurrentlyEmployed: false, SiteID: "f" },
-    { EID: "2", EmployeeName: "Name 7", EmployeeIndex: "10.00", EmployedDate: "2007-10-04", CurrentlyEmployed: true, SiteID: "g" }
-
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
+    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'}
     ];
 
 $(function() {
@@ -38,20 +37,29 @@ $(function() {
          datatype: "local",
          autowidth:true,
          shrinktofit:true,
-         hidegrid: false,//hides the arrow button at the top right corner for collapsing the jqGrid
+         hidegrid: false, //hides the arrow button at the top right corner for collapsing the jqGrid
          rowNum: 10,
          rowList: [10, 20, 30],
          viewrecords: true,
          caption: "Employees",
          pager: "#pager",
-         colNames: ['EID', 'Name', 'Index', 'Employed Date', 'Employed', 'Url'],
+         colNames: ['Project ID', 'Sat(R)', 'Sat(O)', 'Sun(R)', 'Sun(O)', 'Mon(R)', 'Mon(O)', 'Tue(R)', 'Tue(O)', 'Wed(R)', 'Wed(O)', 'Thu(R)', 'Thu(O)', 'Fri(R)', 'Fri(O)'],
          colModel: [
-             { name: 'EID', index: 'EID', width: 100, align: "center", sorttype: 'int' },
-             { name: 'EmployeeName', index: 'EmployeeName', width: 100, align: "left" },
-             { name: 'EmployeeIndex', index: 'EmployeeIndex', width: 100, align: "center" },
-             { name: 'EmployedDate', index: 'EmployedDate', width: 120, align: "right", formatter: 'date', formatoptions: { newformat: 'm-d-Y' }, datefmt: 'm-d-Y' },
-             { name: 'CurrentlyEmployed', index: 'CurrentlyEmployed', width: 100, align: "center", formatter: 'checkbox' },
-             { name: 'SiteID', index: 'SiteID', width: 100, formatter: linkFormatter, sortable: false }
+             { name: 'pid', index:'pid', width: auto, align: "center", sorttype: 'int' },
+             { name: 'satR', width: 50, align: "center" },
+             { name: 'satO', width: 50, align: "center" },
+             { name: 'sunR', width: 50, align: "center" },
+             { name: 'sunO', width: 50, align: "center" },
+             { name: 'monR', width: 50, align: "center" },
+             { name: 'monO', width: 50, align: "center" },
+             { name: 'tueR', width: 50, align: "center" },
+             { name: 'tueO', width: 50, align: "center" },
+             { name: 'wedR', width: 50, align: "center" },
+             { name: 'wedO', width: 50, align: "center" },
+             { name: 'thuR', width: 50, align: "center" },
+             { name: 'thuO', width: 50, align: "center" },
+             { name: 'friR', width: 50, align: "center" },
+             { name: 'friO', width: 50, align: "center" }
                    ]
      });
 });
