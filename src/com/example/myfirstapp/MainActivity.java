@@ -26,7 +26,7 @@ public class MainActivity extends DroidGap {
         webSettings.setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
         
        // myWebView.loadUrl("file:///android_asset/www/index.html");
-        myWebView.loadUrl("http://192.168.1.102/~user0/MyFirstApp/assets/www/index.html");
+        myWebView.loadUrl("http://192.168.1.103/~user0/MyFirstApp/assets/www/index.html");
        // myWebView.loadUrl("http://www.google.com");
     }
 

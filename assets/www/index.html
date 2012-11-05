@@ -20,20 +20,19 @@ html, body {
  
  <script type="text/javascript">
 var mydata = [
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'},
-    { pid: "8", satR:"8", satO:'2', sunR:"8", sunO:'2', monR:"8", monO:'2', tueR:"8", tueO:'2', wedR:"8", wedO:'2', thuR:"8", thuO:'2', friR:"8", friO:'2'}
-    ];
+    { pid: "8", sat:"0", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"},
+    { pid: "8", sat:"1", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"},
+    { pid: "8", sat:"2", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"},
+    { pid: "8", sat:"3", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"},
+    { pid: "8", sat:"4", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"},
+    { pid: "8", sat:"5", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"},
+    { pid: "8", sat:"6", sun:"8", mon:"8", tue:"8", wed:"8", thu:"8", fri:"8"}
+   ];
 
 $(function() {
      var grid = jQuery("#myGrid");
      grid.jqGrid({
-         data: mydata,
+         data:mydata,
          datatype: "local",
          autowidth:true,
          shrinktofit:true,
@@ -43,26 +42,52 @@ $(function() {
          viewrecords: true,
          caption: "Employees",
          pager: "#pager",
-         colNames: ['Project ID', 'Sat(R)', 'Sat(O)', 'Sun(R)', 'Sun(O)', 'Mon(R)', 'Mon(O)', 'Tue(R)', 'Tue(O)', 'Wed(R)', 'Wed(O)', 'Thu(R)', 'Thu(O)', 'Fri(R)', 'Fri(O)'],
+         colNames: ['Project ID', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu','Fri', 'Total'],
          colModel: [
-             { name: 'pid', index:'pid', width: auto, align: "center", sorttype: 'int' },
-             { name: 'satR', width: 50, align: "center" },
-             { name: 'satO', width: 50, align: "center" },
-             { name: 'sunR', width: 50, align: "center" },
-             { name: 'sunO', width: 50, align: "center" },
-             { name: 'monR', width: 50, align: "center" },
-             { name: 'monO', width: 50, align: "center" },
-             { name: 'tueR', width: 50, align: "center" },
-             { name: 'tueO', width: 50, align: "center" },
-             { name: 'wedR', width: 50, align: "center" },
-             { name: 'wedO', width: 50, align: "center" },
-             { name: 'thuR', width: 50, align: "center" },
-             { name: 'thuO', width: 50, align: "center" },
-             { name: 'friR', width: 50, align: "center" },
-             { name: 'friO', width: 50, align: "center" }
-                   ]
+             { name: 'pid', index:'pid', width:100, align: "center", editable:true, sorttype: 'int' },
+             { name: 'sat', width: 50, align: "center", editable:true },
+             { name: 'sun', width: 50, align: "center", editable:true },
+             { name: 'mon', width: 50, align: "center", editable:true },
+             { name: 'tue', width: 50, align: "center", editable:true },
+             { name: 'wed', width: 50, align: "center", editable:true },
+             { name: 'thu', width: 50, align: "center", editable:true },
+             { name: 'fri', width: 50, align: "center", editable:true},
+             {name:'tot', width:50, align:"center"}
+                   ],
+         cellEdit:true,
+         cellsubmit:'clientArray',
+         footerrow:true,
+         userDataOnFooter:true,
      });
 });
+
+function testvalue(){
+var sum = 0;
+var rcount = $("#myGrid").getGridParam("reccount");
+
+for(var i=1;i<=rcount;i++)
+{
+	var sum_r = new Array(0,0,0,0,0,0,0,0);
+	var sum_c = new Array(0,0,0,0,0,0,0,0);
+	for(var j=1;j<=7;j++)
+	{
+		sum_r[i] = sum_r[i] + parseInt($("#myGrid").getCell(i,j));
+		
+		for(var k=1;k<=rcount;k++)
+		{
+			sum_c[j] = sum_c[j] + parseInt($("#myGrid").getCell(k,j));
+		}
+		// $("#myGrid").setCell(k,j,sum_c);
+	}
+	//$("#myGrid").getCell(i,"tot").innerHTML = sum; 
+     $("#myGrid").setCell(i,"tot",sum_r[i]);
+     sum = sum + sum_r[i];
+     $("#myGrid").footerData('set', {'sat':sum_c[1], 'sun':sum_c[2], 'mon':sum_c[3], 'tue':sum_c[4], 'wed':sum_c[5], 'thu':sum_c[6], 'fri':sum_c[7]});
+     
+}
+$("#myGrid").footerData('set',{'tot':sum});
+document.getElementById("testval").innerHTML = $("#myGrid").getCell(5,1);
+}
 
 function linkFormatter(cellValue, options, rowdata, action) {
     return "<a href='http://praneethmoka.wordpress.com?rid=" + options.rowId + "' target='_blank'>Click here</a>";
@@ -75,6 +100,7 @@ function linkFormatter(cellValue, options, rowdata, action) {
 <table id="myGrid"><tr><td/></tr></table> 
 <div id="pager"></div>
 hi this is sample nativa android app to test phone gap's abaility to convert web page to native
-mobile app
+mobile app and the test value is <div id="testval"></div>
+<button onclick="testvalue()">Click me</button>
 </body>
 </html>
