@@ -58,10 +58,14 @@ $(function() {
          cellsubmit:'clientArray',
          footerrow:true,
          userDataOnFooter:true,
+         serializeGridData: function(postData)
+         {
+         document.getElementById("testval1").innerHTML = $("#myGrid").getCell(4,1);
+         }
      });
 });
 
-function testvalue(){
+function testvalue(postData){
 var sum = 0;
 var rcount = $("#myGrid").getGridParam("reccount");
 
@@ -82,11 +86,24 @@ for(var i=1;i<=rcount;i++)
 	//$("#myGrid").getCell(i,"tot").innerHTML = sum; 
      $("#myGrid").setCell(i,"tot",sum_r[i]);
      sum = sum + sum_r[i];
-     $("#myGrid").footerData('set', {'sat':sum_c[1], 'sun':sum_c[2], 'mon':sum_c[3], 'tue':sum_c[4], 'wed':sum_c[5], 'thu':sum_c[6], 'fri':sum_c[7]});
-     
+     $("#myGrid").footerData('set', {'sat':sum_c[1], 'sun':sum_c[2], 'mon':sum_c[3], 'tue':sum_c[4], 'wed':sum_c[5], 'thu':sum_c[6], 'fri':sum_c[7]});    
 }
+   alert("JSON serialized jqGrid data:\n" + postData);
+
 $("#myGrid").footerData('set',{'tot':sum});
 document.getElementById("testval").innerHTML = $("#myGrid").getCell(5,1);
+
+}
+
+function testvalueget()
+{
+    gridData = $("#myGrid").getRowData();
+    var postData = JSON.stringify(gridData);
+    var p = "q=" + postData;
+  
+   $.post("http://192.168.1.145:8080/hello/", {'jqGridData':postData});
+   testvalue(postData);
+  // alert("JSON serialized jqGrid data:\n" + postData);
 }
 
 function linkFormatter(cellValue, options, rowdata, action) {
@@ -99,8 +116,8 @@ function linkFormatter(cellValue, options, rowdata, action) {
 <body>
 <table id="myGrid"><tr><td/></tr></table> 
 <div id="pager"></div>
-hi this is sample nativa android app to test phone gap's abaility to convert web page to native
-mobile app and the test value is <div id="testval"></div>
-<button onclick="testvalue()">Click me</button>
+hi all this is sample nativa android app to test phone gap's abaility to convert web page to native
+mobile app and the test value is <div id="testval1"></div>
+<button onclick="testvalueget()">Click Me</button>
 </body>
 </html>
